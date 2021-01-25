@@ -52,8 +52,15 @@ function goals(state = [], action) {
     }
 }
 
+function app(state = {}, action) {
+    return {
+        todos: todos(state.todos, action),
+        goals: todos(state.goals, action)
+    }
+}
+
 // creating a store
-const store = createStore(todos)
+const store = createStore(app)
 store.subscribe(() => {
     console.log('The new state is: ', store.getState())
 })
@@ -67,8 +74,35 @@ store.dispatch({
     }
 })
 
+store.dispatch({
+    type: 'ADD_TODO',
+    todo: {
+        id: 1,
+        name: 'watch a movie',
+        complete: false
+    }
+})
+
+store.dispatch({
+    type: 'ADD_TODO',
+    todo: {
+        id: 3,
+        name: 'borrow a book',
+        complete: false
+    }
+})
+
+
+store.dispatch({
+    type: 'REMOVE_TODO',
+    id: 3,
+})
+
+
+
 
 // Quiz
+
 function quizReducer(state = [{ flavor: 'Chocolate', count: 36 }, { flavor: 'Vanilla', count: 210 }], action) {
 
     if (action.type === 'DELETE_FLAVOR') {
