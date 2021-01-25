@@ -14,17 +14,23 @@ function createStore() {
     let state
     let listeners = []
 
+    const getState = () => state
     const subscribe = (listener) => {
         listeners.push(listener)
         return () => {
             listeners = listeners.filter(l => l !== listener)
         }
     }
-    const getState = () => state
+
+    const dispatch = (action) => {
+        state = todos(state, action)
+        listeners.forEach(listener => listener())
+    }
 
     return {
         getState,
-        subscribe
+        subscribe,
+        dispatch
     }
 
 }
