@@ -38,3 +38,15 @@ store.subscribe(() => {
 store.subscribe(() => {
     console.log('The store changed')
 })
+
+
+
+// Quiz
+function quizReducer(state = [{ flavor: 'Chocolate', count: 36 }, { flavor: 'Vanilla', count: 210 }], action) {
+
+    if (action.type === 'DELETE_FLAVOR') {
+        return state.filter(f => f.flavor !== flavor)
+    }
+    return state
+}
+
