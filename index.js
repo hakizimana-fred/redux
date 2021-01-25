@@ -1,3 +1,12 @@
+function todos(state = [], action) {
+    if (action.type === 'ADD_TODO') {
+        return state.concat([action.todo])
+    }
+
+    return state
+}
+
+
 // creating a store
 
 function createStore() {
@@ -7,6 +16,9 @@ function createStore() {
 
     const subscribe = (listener) => {
         listeners.push(listener)
+        return () => {
+            listeners = listeners.filter(l => l !== listener)
+        }
     }
     const getState = () => state
 
