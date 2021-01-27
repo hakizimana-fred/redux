@@ -110,4 +110,3 @@ function quizReducer(state = [{ flavor: 'Chocolate', count: 36 }, { flavor: 'Van
     }
     return state
 }
-
